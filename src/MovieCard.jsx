@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const FALLBACK_IMAGE =
   "data:image/svg+xml;charset=UTF-8," +
@@ -19,17 +20,19 @@ function MovieCard({ movie }) {
 
   return (
     <article className="movie-card">
-      <img
-        src={imageSrc}
-        alt={`${movie.title} poster`}
-        className="movie-poster"
-        onError={() => setHasImageError(true)}
-      />
-      <div className="movie-info">
-        <h3>{movie.title}</h3>
-        <p>{movie.description}</p>
-        <div className="movie-rating">⭐ {movie.rating}/5</div>
-      </div>
+      <Link to={`/movie/${movie.id}`} className="card-link">
+        <img
+          src={imageSrc}
+          alt={`${movie.title} poster`}
+          className="movie-poster"
+          onError={() => setHasImageError(true)}
+        />
+        <div className="movie-info">
+          <h3>{movie.title}</h3>
+          <p>{movie.description}</p>
+          <div className="movie-rating">⭐ {movie.rating}/5</div>
+        </div>
+      </Link>
     </article>
   );
 }
